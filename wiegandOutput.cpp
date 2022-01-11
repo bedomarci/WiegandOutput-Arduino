@@ -71,7 +71,7 @@ void WiegandOut::sendD0() {
     _delay_us(DELAY_PULSE_SHORT);
     digitalWrite(_pinData0, HIGH);
     _delay_us(DELAY_PULSE_LONG);
-    Serial.print("0");
+    if (_debug) Serial.print("0");
 }
 
 /*Send D1 pin pulse*/
@@ -80,7 +80,7 @@ void WiegandOut::sendD1() {
     _delay_us(DELAY_PULSE_SHORT);
     digitalWrite(_pinData1, HIGH);
     _delay_us(DELAY_PULSE_LONG);
-    Serial.print("1");
+    if (_debug) Serial.print("1");
 }
 
 /*Send wiegand data
@@ -100,7 +100,7 @@ void WiegandOut::send(uint64_t data, uint8_t bits, bool useFacilityCode) {
     if (_evenParity) { sendD1(); } else { sendD0(); }
 
 //    if (bits == 26) {  //send 24 bits data wiegand
-    unsigned int dataBits = bits - 2;
+    uint8_t dataBits = bits - 2;
     for (int i = 0; i < dataBits; i++) {
         tempData = data >> (dataBits - 1 - i);
         if (tempData & 0x1) {
@@ -111,7 +111,7 @@ void WiegandOut::send(uint64_t data, uint8_t bits, bool useFacilityCode) {
     }
 
     if (_oddParity) { sendD1(); } else { sendD0(); }
-    Serial.println();
+    if (_debug) Serial.println();
 }
 
 uint64_t WiegandOut::createDataMask(uint8_t bits) {
