@@ -68,18 +68,18 @@ void WiegandOut::createParity(uint64_t data, uint8_t bits, bool useFacilityCode)
 /*Send D0 pin pulse*/
 void WiegandOut::sendD0() {
     digitalWrite(_pinData0, LOW);
-    _delay_us(DELAY_PULSE_SHORT);
+    delayMicroseconds(DELAY_PULSE_SHORT);
     digitalWrite(_pinData0, HIGH);
-    _delay_us(DELAY_PULSE_LONG);
+    delayMicroseconds(DELAY_PULSE_LONG);
     Serial.print("0");
 }
 
 /*Send D1 pin pulse*/
 void WiegandOut::sendD1() {
     digitalWrite(_pinData1, LOW);
-    _delay_us(DELAY_PULSE_SHORT);
+    delayMicroseconds(DELAY_PULSE_SHORT);
     digitalWrite(_pinData1, HIGH);
-    _delay_us(DELAY_PULSE_LONG);
+    delayMicroseconds(DELAY_PULSE_LONG);
     Serial.print("1");
 }
 
