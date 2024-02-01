@@ -3,7 +3,7 @@
 
 class WiegandOut{
   public:
-    WiegandOut(int data0, int data1, debug = false);
+    WiegandOut(int data0, int data1, bool debug = false);
     void begin(int pinD0, int pinD1);
     void send(uint64_t data, uint8_t bits, bool useFacilityCode);
 
